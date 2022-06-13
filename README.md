@@ -12,7 +12,7 @@ the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubuserconte
 ---
 
 ## Technology Stack
-- Java 11
+- Java 17
 - Spring Boot
 - Spring Web
 - [DSS](https://github.com/esig/dss)
@@ -36,4 +36,4 @@ mvn spring-boot:run
 ### Prerequisites
 - git
 - maven
-- jdk-11
+- jdk-17

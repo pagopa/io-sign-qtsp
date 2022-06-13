@@ -13,7 +13,7 @@
     <version>0.0.1</version>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <swagger-annotations-version>2.2.0</swagger-annotations-version>

@@ -53,7 +53,6 @@ public class QTSPService {
 
         public File getCert() throws URISyntaxException, InvalidKeyException, IOException {
                 File myCert = new File(certFileName); 
-                System.out.println(myCert.getAbsolutePath());
                 return myCert;
         }
 

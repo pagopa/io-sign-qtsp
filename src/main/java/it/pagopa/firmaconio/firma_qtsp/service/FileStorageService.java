@@ -52,7 +52,6 @@ public class FileStorageService {
 
             Resource resource = new UrlResource(targetLocation.toUri());
             fileNameStorage.put(fileName, resource);
-            System.out.println(fileNameStorage);
 
             return tmpFile;
         } catch (IOException ex) {
