@@ -38,7 +38,7 @@ public class SignPdfApiController implements SignPdfApi {
         response.setHash(fileTbs.getHash());
         response.setSignedHash(fileTbs.getSignedHash());
         response.setSigned(fileTbs.isSigned());
-        response.setFileLink(FileUtility.createDownloadLink(fileTbs.getFile()));
+        response.setSignedFileUrl(FileUtility.createDownloadLink(fileTbs.getFile()));
         return ResponseEntity.ok(response);
 
     }

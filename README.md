@@ -7,7 +7,7 @@ Service to hash a PDF document, sign it via a QTSP and build the final PADES PDF
 Spring application exposes API to manage the _SignPdf_.
 
 See
-the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/pagopa/io-microservice-sign-qtsp/feat-pades-pdf/openapi/openapi.yaml?)
+the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubusercontent.com/pagopa/io-microservice-sign-qtsp/feat-pades-pdf/openapi/openapi.yaml?v=1)
 
 ---
 

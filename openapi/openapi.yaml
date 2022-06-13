@@ -65,9 +65,9 @@ components:
         signed-hash: 
           type: string 
           example: 'Base 64 signed hash' 
-        file-link: 
+        signed-file-url: 
           type: string 
-          example: 'Link to signed file' 
+          example: 'URL to download signed file' 
         signed: 
           type: boolean
           example: True 
