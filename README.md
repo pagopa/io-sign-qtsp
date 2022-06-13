@@ -15,6 +15,7 @@ the [OpenApi 3 here.](https://editor.swagger.io/?url=https://raw.githubuserconte
 - Java 11
 - Spring Boot
 - Spring Web
+- [DSS](https://github.com/esig/dss)
 ---
 
 ## Develop Locally 💻
