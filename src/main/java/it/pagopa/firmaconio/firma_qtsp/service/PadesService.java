@@ -1,6 +1,5 @@
 package it.pagopa.firmaconio.firma_qtsp.service;
 
-import com.microsoft.azure.storage.StorageException;
 import eu.europa.esig.dss.enumerations.DigestAlgorithm;
 import eu.europa.esig.dss.model.DSSDocument;
 import eu.europa.esig.dss.model.FileDocument;
@@ -81,8 +80,6 @@ public class PadesService {
             throw new QtspException("QTSP error: URL not found");
         } catch (InvalidKeyException e) {
             throw new QtspException("QTSP error: Invalid Key");
-        } catch (StorageException e) {
-            throw new FileStorageException("QTSP error: I can't access the storage");
         }
 
     }

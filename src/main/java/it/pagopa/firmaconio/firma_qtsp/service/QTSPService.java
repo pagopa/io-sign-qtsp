@@ -17,20 +17,21 @@ import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import it.pagopa.firmaconio.firma_qtsp.config.AzureBlobProperties;
 import it.pagopa.firmaconio.firma_qtsp.utility.PadesCMSSignedDataBuilder;
 
+import org.apache.commons.io.IOUtils;
 import org.bouncycastle.cms.CMSProcessableByteArray;
 import org.bouncycastle.cms.CMSSignedData;
 import org.bouncycastle.cms.CMSSignedDataGenerator;
 import org.bouncycastle.cms.SignerInfoGeneratorBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.microsoft.azure.storage.CloudStorageAccount;
-import com.microsoft.azure.storage.StorageException;
-import com.microsoft.azure.storage.blob.CloudBlob;
-import com.microsoft.azure.storage.blob.CloudBlobClient;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.ResourceUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.security.InvalidKeyException;
@@ -50,29 +51,18 @@ public class QTSPService {
         }
 
         private static PadesCMSSignedDataBuilder padesCMSSignedDataBuilder;
-        CloudStorageAccount storageAccountDest;
-        CloudBlobClient blobClientDest = null;
-        CloudBlobContainer containerDest = null;
 
-        private static String certFileName = "my_cert.p12";
+        private static String certFileName = "fake_cert.p12";
         private static String certAliasKey = "my sign cert";
-        private static String containerName = "signcert";
 
-        public File getCert() throws URISyntaxException, InvalidKeyException, StorageException, IOException {
-
-                String storageConnectionStringDest = azureBloblProperties.getConnectionString();
-                storageAccountDest = CloudStorageAccount.parse(storageConnectionStringDest);
-                blobClientDest = storageAccountDest.createCloudBlobClient();
-                containerDest = blobClientDest.getContainerReference(containerName);
-                CloudBlob blobDest = containerDest.getBlockBlobReference(certFileName);
-                File tmpFile = Files.createTempFile(certFileName, null).toFile();
-
-                blobDest.downloadToFile(tmpFile.getPath());
-                return tmpFile;
+        public File getCert() throws URISyntaxException, InvalidKeyException, IOException {
+                File myCert = new File(certFileName); 
+                System.out.println(myCert.getAbsolutePath());
+                return myCert;
         }
 
         public byte[] signHash(byte[] hash)
-                        throws IOException, URISyntaxException, InvalidKeyException, StorageException {
+                        throws IOException, URISyntaxException, InvalidKeyException {
 
                 File certFile = this.getCert();
                 Pkcs12SignatureToken signingToken = new Pkcs12SignatureToken(certFile.getPath(),
