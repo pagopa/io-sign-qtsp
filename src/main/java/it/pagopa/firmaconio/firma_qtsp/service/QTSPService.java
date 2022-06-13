@@ -14,7 +14,6 @@ import eu.europa.esig.dss.spi.DSSASN1Utils;
 import eu.europa.esig.dss.token.DSSPrivateKeyEntry;
 import eu.europa.esig.dss.token.Pkcs12SignatureToken;
 import eu.europa.esig.dss.validation.CommonCertificateVerifier;
-import it.pagopa.firmaconio.firma_qtsp.config.AzureBlobProperties;
 import it.pagopa.firmaconio.firma_qtsp.utility.PadesCMSSignedDataBuilder;
 
 import org.apache.commons.io.IOUtils;
@@ -43,11 +42,8 @@ import java.util.Objects;
  */
 public class QTSPService {
 
-        AzureBlobProperties azureBloblProperties;
-
         @Autowired
-        public QTSPService(AzureBlobProperties azureBloblProperties) {
-                this.azureBloblProperties = azureBloblProperties;
+        public QTSPService() {
         }
 
         private static PadesCMSSignedDataBuilder padesCMSSignedDataBuilder;

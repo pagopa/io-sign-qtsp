@@ -7,7 +7,6 @@ import eu.europa.esig.dss.pades.PAdESSignatureParameters;
 import eu.europa.esig.dss.pdf.IPdfObjFactory;
 import eu.europa.esig.dss.pdf.PDFSignatureService;
 import eu.europa.esig.dss.pdf.ServiceLoaderPdfObjFactory;
-import it.pagopa.firmaconio.firma_qtsp.config.AzureBlobProperties;
 import it.pagopa.firmaconio.firma_qtsp.exception.FileStorageException;
 import it.pagopa.firmaconio.firma_qtsp.exception.QtspException;
 import it.pagopa.firmaconio.firma_qtsp.model.FileTBS;
@@ -33,9 +32,9 @@ public class PadesService {
     private QTSPService QTSPService;
 
     @Autowired
-    public PadesService(AzureBlobProperties azureBloblProperties) {
+    public PadesService() {
 
-        this.QTSPService = new QTSPService(azureBloblProperties);
+        this.QTSPService = new QTSPService();
     }
 
     public FileTBS getFileTbs() {
