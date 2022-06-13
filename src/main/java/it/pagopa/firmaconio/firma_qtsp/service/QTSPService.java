@@ -16,23 +16,15 @@ import eu.europa.esig.dss.token.Pkcs12SignatureToken;
 import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import it.pagopa.firmaconio.firma_qtsp.utility.PadesCMSSignedDataBuilder;
 
-import org.apache.commons.io.IOUtils;
+
 import org.bouncycastle.cms.CMSProcessableByteArray;
 import org.bouncycastle.cms.CMSSignedData;
 import org.bouncycastle.cms.CMSSignedDataGenerator;
 import org.bouncycastle.cms.SignerInfoGeneratorBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.util.ResourceUtils;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.util.Objects;
@@ -52,7 +44,7 @@ public class QTSPService {
         private static String certAliasKey = "my sign cert";
 
         public File getCert() throws URISyntaxException, InvalidKeyException, IOException {
-                File myCert = new File(certFileName); 
+                File myCert = new File(certFileName);
                 return myCert;
         }
 

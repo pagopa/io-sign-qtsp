@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.pagopa.firmaconio.firma_qtsp.exception.FileStorageException;
-import it.pagopa.firmaconio.firma_qtsp.config.FileStorageProperties;
+
 import it.pagopa.firmaconio.firma_qtsp.exception.UploadedFileException;
 
 @Service
@@ -28,7 +28,7 @@ public class FileStorageService {
     LinkedHashMap<String, Resource> fileNameStorage = new LinkedHashMap<>();
 
     @Autowired
-    public FileStorageService(FileStorageProperties fileStorageProperties) {
+    public FileStorageService() {
     }
 
     public File storeFile(@NotNull MultipartFile file) {

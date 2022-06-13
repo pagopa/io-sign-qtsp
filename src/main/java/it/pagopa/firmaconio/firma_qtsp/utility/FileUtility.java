@@ -24,7 +24,6 @@ public class FileUtility {
             bytes = Files.size(file.toPath());
             return String.format("%,d kilobytes", bytes / 1024);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             return "INVALID_SIZE";
         }
        

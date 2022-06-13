@@ -7,7 +7,6 @@ import eu.europa.esig.dss.pades.PAdESSignatureParameters;
 import eu.europa.esig.dss.pdf.IPdfObjFactory;
 import eu.europa.esig.dss.pdf.PDFSignatureService;
 import eu.europa.esig.dss.pdf.ServiceLoaderPdfObjFactory;
-import it.pagopa.firmaconio.firma_qtsp.exception.FileStorageException;
 import it.pagopa.firmaconio.firma_qtsp.exception.QtspException;
 import it.pagopa.firmaconio.firma_qtsp.model.FileTBS;
 import it.pagopa.firmaconio.firma_qtsp.utility.UUIDUtility;

@@ -79,5 +79,4 @@ public class ApiError {
         this.subErrors = subErrors;
     }
 
-    
 }
