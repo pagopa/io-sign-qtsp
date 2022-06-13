@@ -7,6 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.LinkedHashMap;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -28,7 +31,7 @@ public class FileStorageService {
     public FileStorageService(FileStorageProperties fileStorageProperties) {
     }
 
-    public File storeFile(MultipartFile file) {
+    public File storeFile(@NotNull MultipartFile file) {
         try {
             // Normalize file name
             String originalFileName = file.getOriginalFilename();
@@ -57,7 +60,7 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFileAsResource(String fileName) {
+    public Resource loadFileAsResource(@NotBlank String fileName) {
         Resource resource = fileNameStorage.get(fileName);
         if (resource.exists()) {
             return resource;

@@ -1,13 +1,10 @@
 package it.pagopa.firmaconio.firma_qtsp.controller;
 
 import java.io.File;
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import it.pagopa.firmaconio.firma_qtsp.api.SignPdfApi;
 import it.pagopa.firmaconio.firma_qtsp.exception.UploadedFileException;
 import it.pagopa.firmaconio.firma_qtsp.model.FileTBS;

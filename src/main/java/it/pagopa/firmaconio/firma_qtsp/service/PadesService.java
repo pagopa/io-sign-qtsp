@@ -20,6 +20,8 @@ import java.security.InvalidKeyException;
 import java.util.Base64;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +42,7 @@ public class PadesService {
         return this.fileTBS;
     }
 
-    public void setFile(File file) {
+    public void setFile(@NotNull File file) {
         UUID uuid = UUIDUtility.fileToUUID(file);
         this.fileTBS = new FileTBS(uuid, file);
     }

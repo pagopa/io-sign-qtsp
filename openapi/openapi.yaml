@@ -71,3 +71,7 @@ components:
         signed: 
           type: boolean
           example: True 
+
+servers:
+  - url: http://localhost:9090
+    variables: {}
