@@ -16,15 +16,19 @@ import eu.europa.esig.dss.token.Pkcs12SignatureToken;
 import eu.europa.esig.dss.validation.CommonCertificateVerifier;
 import it.pagopa.firmaconio.firma_qtsp.utility.PadesCMSSignedDataBuilder;
 
-
 import org.bouncycastle.cms.CMSProcessableByteArray;
 import org.bouncycastle.cms.CMSSignedData;
 import org.bouncycastle.cms.CMSSignedDataGenerator;
 import org.bouncycastle.cms.SignerInfoGeneratorBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.util.Objects;
@@ -34,25 +38,36 @@ import java.util.Objects;
  */
 public class QTSPService {
 
+        File certFile;
+
         @Autowired
-        public QTSPService() {
+        public QTSPService() throws InvalidKeyException, URISyntaxException, IOException {
+                this.certFile = downloadCert();
         }
 
         private static PadesCMSSignedDataBuilder padesCMSSignedDataBuilder;
 
-        private static String certFileName = "fake_cert.p12";
+        private static String certDownloadUrl = "https://github.com/pagopa/io-sign-qtsp/raw/feat-pades-pdf/fake_cert.p12";
         private static String certAliasKey = "my sign cert";
 
-        public File getCert() throws URISyntaxException, InvalidKeyException, IOException {
-                File myCert = new File(certFileName);
-                return myCert;
+        public File downloadCert() throws URISyntaxException, InvalidKeyException, IOException {
+                BufferedInputStream in = new BufferedInputStream(new URL(certDownloadUrl).openStream());
+
+                File tmpFile = Files.createTempFile("cert", "p12").toFile();
+                FileOutputStream fileOutputStream = new FileOutputStream(tmpFile);
+                int bytesRead;
+                byte dataBuffer[] = new byte[1024];
+                while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
+                        fileOutputStream.write(dataBuffer, 0, bytesRead);
+                }
+                fileOutputStream.close();
+                return tmpFile;
         }
 
         public byte[] signHash(byte[] hash)
                         throws IOException, URISyntaxException, InvalidKeyException {
 
-                File certFile = this.getCert();
-                Pkcs12SignatureToken signingToken = new Pkcs12SignatureToken(certFile.getPath(),
+                Pkcs12SignatureToken signingToken = new Pkcs12SignatureToken(this.certFile.getPath(),
                                 new KeyStore.PasswordProtection("".toCharArray()));
 
                 DSSPrivateKeyEntry privateKey = signingToken.getKey(certAliasKey);

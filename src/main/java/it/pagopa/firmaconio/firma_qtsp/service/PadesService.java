@@ -31,7 +31,7 @@ public class PadesService {
     private QTSPService QTSPService;
 
     @Autowired
-    public PadesService() {
+    public PadesService() throws InvalidKeyException, URISyntaxException, IOException {
 
         this.QTSPService = new QTSPService();
     }
