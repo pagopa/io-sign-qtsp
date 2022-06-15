@@ -73,5 +73,5 @@ components:
           example: True 
 
 servers:
-  - url: http://localhost:9090
+  - url: https://io-sign-qtsp.azurewebsites.net
     variables: {}
