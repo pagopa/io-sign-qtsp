@@ -1,4 +1,4 @@
-package it.gov.pagopa.microservice.config;
+package it.pagopa.firmaconio.firma_qtsp.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,4 +17,15 @@ public class ConfigProperties {
     public boolean isActiveProfileDev() {
         return "dev".equals(getActiveProfile());
     }
+
+    public String getActiveProfile() {
+        return activeProfile;
+    }
+
+    public String getCORSOrigin() {
+        return CORSOrigin;
+    }
+
+    
+
 }

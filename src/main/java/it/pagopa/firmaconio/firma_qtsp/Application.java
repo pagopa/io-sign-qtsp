@@ -1,4 +1,4 @@
-package it.gov.pagopa.microservice;
+package it.pagopa.firmaconio.firma_qtsp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

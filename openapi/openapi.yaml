@@ -1,46 +1,77 @@
-swagger: '2.0'
-info:
-  title: Microservice JAVA API
-  description: Microservice JAVA API
-  version: '0.0.1'
-host: localhost
-basePath: /api/v1
-schemes:
-  - https
+openapi: 3.0.3 # version of the specification 
+info: 
+  version: '0.0.1' 
+  title: Sign PDF with QTSP
 
-tags:
-  - name: ping
-    description: Ping
-
-paths:
-  /ping:
-    get:
-      tags:
-        - ping
-      summary: Ping Request
-      operationId: sendPingRequest
-      responses:
+paths: 
+  /sign-pdf: 
+    post: 
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file_to_be_signed:
+                  type: string
+                  format: binary
+              
+      summary: Return a PDF signed by QTSP 
+      operationId: signPdf 
+      responses: 
         200:
-          description: Ping OK
-          schema:
-            $ref: '#/definitions/PingState'
+          description: Success sign
+          content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/signResponse' 
+        400:
+          description: Bad client request
+        500:
+          description: Internal server error
 
-definitions:
-  PingState:
-    type: string
+  /download/{filename}: 
+    get: 
+      parameters:
+      - name: filename
+        in: path
+        description: File name
+        required: true
+        schema:
+          type: string
+          format: filename
+      summary: Returns the requested file
+      operationId: downloadPdf 
+      responses: 
+        200:
+          description: Success download
+          content: 
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        404:
+          description: File not found
 
-consumes:
-  - application/json
-produces:
-  - application/json
 
-responses:
-  InvalidRequest:
-    description: Bad request
-    #content: {} #TODO
-  Forbidden:
-    description: Forbidden
-    #content: {} #TODO
-  NotFound:
-    description: Not found
-    #content: {} #TODO
+components: 
+  schemas: 
+    signResponse: 
+      type: object 
+      properties: 
+        hash: 
+          type: string 
+          example: 'Base 64 file hash' 
+        signed-hash: 
+          type: string 
+          example: 'Base 64 signed hash' 
+        signed-file-url: 
+          type: string 
+          example: 'URL to download signed file' 
+        signed: 
+          type: boolean
+          example: True 
+
+servers:
+  - url: https://io-sign-qtsp.azurewebsites.net
+    variables: {}
